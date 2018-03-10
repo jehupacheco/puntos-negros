@@ -45,9 +45,6 @@
             <label>Descripcion</label>
           </div>
           <div class="input-field">
-            <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
-          </div>
-          <div class="input-field">
             <select class="controls" name="city" id="city" onchange="searchByCity()">
               <option value="" disabled selected>Selecciona tu ciudad</option>
               @foreach ($cities as $city)
@@ -55,6 +52,9 @@
               @endforeach
             </select>
             <label>Ciudad</label>
+          </div>
+          <div class="input-field">
+            <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
           </div>
         </form>
       </div>
