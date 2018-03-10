@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BlackPoint;
 use App\Models\City;
+use DB;
 use Carbon\Carbon;
 
 class ReportController extends Controller
@@ -16,13 +17,13 @@ class ReportController extends Controller
 
     public function index()
     {
-        $blackPoints = BlackPoint::all()->map(function($item) {
-            return ['lat' => (double)$item->latitude, 'lng' => (double)$item->longitude, 'id' => $item->id ];
-        });
+        $data =  DB::table('black_points')
+                        ->select(DB::raw('count(*) as count, black_points.city_id, cities.name'))
+                        ->leftJoin('cities', 'cities.id', '=', 'black_points.city_id')
+                        ->groupBy(['city_id', 'cities.name'])
+                        ->get();
 
-        $class = ['map-body'];
-
-        return view('reports.index', compact('blackPoints', 'class'));
+        return view('reports.index', compact('data'));
     }
 
 }

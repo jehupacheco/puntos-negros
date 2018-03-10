@@ -16,12 +16,18 @@ Route::get('/', ['as' => 'blackpoint.index', 'uses' => 'BlackPointController@ind
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/reporte', 'ReportController@index')->name('report');
 
 Route::group(['prefix' => 'blackpoint'], function() {
     Route::post('/', ['as' => 'blackpoint.show', 'uses' => 'BlackPointController@show']);
     Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
     Route::post('/store', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@store']);
+    Route::get('/list', ['as' => 'blackpoint.list', 'uses' => 'BlackPointController@list']);
+    Route::get('/edit/{blackpoint}', ['as' => 'blackpoint.edit', 'uses' => 'BlackPointController@edit']);
+});
+
+Route::group(['prefix' => 'reporte'], function() {
+    Route::get('/', 'ReportController@index')->name('report');
+    Route::get('/departamento/{department}', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@byDepartment']);
     Route::get('/list', ['as' => 'blackpoint.list', 'uses' => 'BlackPointController@list']);
     Route::get('/edit/{blackpoint}', ['as' => 'blackpoint.edit', 'uses' => 'BlackPointController@edit']);
 });
