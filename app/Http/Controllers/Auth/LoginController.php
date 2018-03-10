@@ -57,4 +57,17 @@ class LoginController extends Controller
         );
     }
 
+    public function loginMobile(Request $request)
+    {
+        $user = User::where('email', $request->email)
+            ->where('user_type_id', 2)
+            ->first();
+
+        return ($user && $this->guard()->attempt(
+                    $this->credentials($request), $request->has('remember')
+                ))
+        ? response()->json(['success' => 'true'], 200)
+        : response()->json(['success' => 'false'], 400);
+
+    }
 }
