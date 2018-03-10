@@ -8,7 +8,7 @@
   <div class="row map-container">
       <div class="col hide-on-small-only m3 detail-sidebar">
         <div class="card detail-sidebar__card">
-          <div class="card-image">
+          <div class="card-image" style="background-color: #CCC;">
             <img src="img/addPhoto.png" alt="" id="content-image">
           </div>
           <div id="content-sidebar" class="card-content">

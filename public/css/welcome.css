@@ -31,3 +31,9 @@
   position: absolute;
   top:80vh;
 }
+
+#content-image{
+  height: 170px;
+  width: auto;
+  margin: auto;
+}
