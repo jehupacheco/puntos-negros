@@ -60,8 +60,25 @@
               if (places.length == 0) {
                 return;
               }
-              console.log('places: ', places);
-              // move to the first place in the array TODO
+
+              var bounds = new google.maps.LatLngBounds();
+
+              places.forEach(function(place) {
+                if (!place.geometry) {
+                  console.log("Error: Returned place contains no geometry");
+                  return;
+                }
+
+                if (place.geometry.viewport) {
+                  // Only geocodes have viewport.
+                  bounds.union(place.geometry.viewport);
+                } else {
+                  bounds.extend(place.geometry.location);
+                }
+              });
+              
+              map.fitBounds(bounds);
+
             });
 
 
@@ -70,7 +87,6 @@
             // create an array of markers based on a given "locations" array.
             // The map() method here has nothing to do with the Google Maps API.
             var markers = locations.map(function(location, i) {
-              console.log(location);
 
               return new google.maps.Marker({
                 position: location,
@@ -92,7 +108,6 @@
                     lng : lng
                   }
                 }).done(function(res){
-                    console.log(res);
                     $('#content-image').attr('src', 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + res.latitude + ',' + res.longitude + '&key=AIzaSyCVZd8XiGUXj6RdybBK61VfTQL4dQ53X8U&fov=120');
                     $('#content-sidebar').empty();
                     $('#content-sidebar').append(`
