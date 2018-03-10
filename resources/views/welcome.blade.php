@@ -77,43 +77,56 @@
             // Create the search box and link it to the UI element.
             var input = document.getElementById('nav-input-search');
             var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].addListener('insert_at', function() {
-              console.log('Hola papu 2');
-            });
+
+            var inputMobile = document.createElement('input');
+            var container = document.createElement('div');
+            var searchBoxMobile = new google.maps.places.SearchBox(inputMobile);
+            inputMobile.classList.add('help-me-please');
+            inputMobile.classList.add('hide-on-large-only');
+            inputMobile.setAttribute('placeholder', 'Ingresa una dirección');
+            container.classList.add('help-me-please-container');
+            container.appendChild(inputMobile);
             // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
             input.style['display'] = 'block';
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
 
             // Bias the SearchBox results towards current map's viewport.
             map.addListener('bounds_changed', function() {
               searchBox.setBounds(map.getBounds());
+              searchBoxMobile.setBounds(map.getBounds());
             });
 
-            searchBox.addListener('places_changed', function() {
-              var places = searchBox.getPlaces();
-
-              if (places.length == 0) {
-                return;
-              }
-
-              var bounds = new google.maps.LatLngBounds();
-
-              places.forEach(function(place) {
-                if (!place.geometry) {
-                  console.log("Error: Returned place contains no geometry");
+            var cambiamos = function(searchBox) {
+              return function() {
+                var places = searchBox.getPlaces();
+  
+                if (places.length == 0) {
                   return;
                 }
+  
+                var bounds = new google.maps.LatLngBounds();
+  
+                places.forEach(function(place) {
+                  if (!place.geometry) {
+                    console.log("Error: Returned place contains no geometry");
+                    return;
+                  }
+  
+                  if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                  } else {
+                    bounds.extend(place.geometry.location);
+                  }
+                });
+  
+                map.fitBounds(bounds);
+              }
+            };
 
-                if (place.geometry.viewport) {
-                  // Only geocodes have viewport.
-                  bounds.union(place.geometry.viewport);
-                } else {
-                  bounds.extend(place.geometry.location);
-                }
-              });
-
-              map.fitBounds(bounds);
-
-            });
+            searchBox.addListener('places_changed', cambiamos(searchBox));
+            searchBoxMobile.addListener('places_changed', cambiamos(searchBoxMobile));
 
 
             // Add some markers to the map.
