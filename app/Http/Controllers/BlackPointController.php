@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BlackPoint;
 use App\Models\City;
+use App\Models\Status;
 use Carbon\Carbon;
 
 class BlackPointController extends Controller
@@ -82,12 +83,40 @@ class BlackPointController extends Controller
 
     public function list()
     {
-        
+        $blackPoints = BlackPoint::all();
+
+        return view('blackpoints.index',compact('blackPoints'));
+
     }
 
-    public function update()
+    public function edit(BlackPoint $blackPoint)
     {
+        $cities = City::all();
+        $statuses = Status::all();
+        $location = json_encode(['lat' => (double)$blackPoint->latitude, 'lng' => (double)$blackPoint->longitude]);
+        return view('blackpoints.edit', compact('blackPoint','cities','statuses','location'));
+    }
 
+    public function update(BlackPoint $blackPoint, Request $request)
+    {
+        $location = json_decode($request['lat-lng'],true);
+
+        $latitude = $location['lat'];
+        $longitude = $location['lng'];
+        
+        $blackPoint->detail = $request['detail'];
+        $blackPoint->status_id = $request['status']; 
+        $blackPoint->latitude = $latitude;
+        $blackPoint->longitude = $longitude;
+        $blackPoint->city_id = $request['city'];
+        $blackPoint->user_id = \Auth::user()->id;
+        try {
+            $blackPoint->save();    
+        } catch (Exception $e) {
+            abort(500,$e);
+        }
+        
+        return redirect()->back()->with('message','El punto se ha actualizado con éxito');
     }
 
 }
