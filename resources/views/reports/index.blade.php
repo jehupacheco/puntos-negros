@@ -15,7 +15,7 @@
 @endsection
 
 @section('extra-js')
-  <script src="{{ 'js/Chart.min.js'}}"></script>
+  <script src="{{ asset('js/Chart.min.js') }}"></script>
   <script>
     $(document).ready(function () {
       var data = {!! json_encode($data) !!}
@@ -55,7 +55,7 @@
           return d.name === label;
         })[0];
 
-        window.location = '/departamento/' + item.city_id;
+        window.location = '/reporte/departamento/' + item.city_id;
       }, false);
     });
   </script>
