@@ -18,6 +18,20 @@
 </head>
 <body>
     <div id="app">
+        @guest
+            <div style="display: none;"></div>
+        @else
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <ul id="dropdown1" class="dropdown-content">
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                </li>
+            </ul>
+        @endguest
         <nav>
             <div class="nav-wrapper">
                 <a class="brand-logo" href="{{ url('/') }}">
@@ -31,21 +45,10 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
                         <li>
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                {{ Auth::user()->name }}
+                                <i class="material-icons right">arrow_drop_down</i>
                             </a>
-    
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-    
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                         </li>
                     @endguest
                 </ul>
@@ -55,7 +58,7 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
                         <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

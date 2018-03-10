@@ -16,7 +16,7 @@
                                 @endif
                                 for="email"
                             >
-                                {{ __('E-Mail Address') }}
+                                {{ __('E-Mail') }}
                             </label>
                         </div>
 
@@ -37,9 +37,9 @@
                                 {{ __('Login') }}
                             </button>
 
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{--  <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
-                            </a>
+                            </a>  --}}
                         </div>
                     </form>
                 </div>
