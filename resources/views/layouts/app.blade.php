@@ -34,17 +34,22 @@
         @endguest
         <nav class="deep-purple darken-1">
             <div class="nav-wrapper">
-                <a class="brand-logo" href="{{ url('/') }}" style="padding-left:1rem;">
+                <a class="brand-logo" href="{{ url('/') }}" style="padding-left:1rem; width: 25%">
                     Puntos Negros
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
+                <ul class="right hide-on-med-and-down" style="width: 75%; display: flex; justify-content: flex-end">
+                    @if (request()->path() == '/')
+                    <div class="input-field" style="width: 100%">
+                        <i class="material-icons prefix white-text">search</i>
+                        <input class="white-text" type="text" placeholder="Busca un lugar" style="margin-bottom: 10px" id="nav-input-search">
+                    </div>
+                    @endif
+                    <li style="min-width: 250px;"><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
                     @guest
-                        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li style="min-width: 100px; overflow: hidden"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
-                        <li>
+                        <li style="min-width: 200px; overflow: hidden">
                             <a class="dropdown-button" href="#!" data-activates="dropdown1">
                                 {{ Auth::user()->name }}
                                 <i class="material-icons right">arrow_drop_down</i>

@@ -5,3 +5,8 @@ html {
 #app {
   height: 100%;
 }
+
+#nav-input-search:focus {
+  box-shadow: none;
+  border-bottom: 0;
+}
