@@ -12,8 +12,8 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/materialize.min.css') }}">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('extra-css')
 </head>
 <body class="{{ isset($class) ? implode($class,',') : '' }}">
@@ -78,9 +78,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/materialize.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/jquery.min.js') }}"></script>
+    <script src="{{ mix('js/materialize.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".button-collapse").sideNav();
