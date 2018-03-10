@@ -26,3 +26,8 @@
   height: 100%;
   width: 100%;
 }
+
+.button-floating{
+  position: absolute;
+  top:80vh;
+}

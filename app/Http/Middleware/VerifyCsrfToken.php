@@ -13,6 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'blackpoint/store',
-        'blackpoint'
+        'blackpoint',
+        'api/login',
+        'api/blackpoints/show',
     ];
 }

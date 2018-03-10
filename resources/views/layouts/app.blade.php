@@ -62,12 +62,24 @@
                     @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
+                        
                         <li>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                          <a href="{{ route('blackpoint.create') }}">
+                            Agrega un punto
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ route('report') }}">
+                            Reportes
+                          </a>
+                        </li>
+                        <li><div class="divider"></div></li>
+                        <li>
+                          <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                          </a>
                         </li>
                     @endguest
                 </ul>

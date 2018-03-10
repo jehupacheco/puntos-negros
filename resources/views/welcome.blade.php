@@ -6,7 +6,7 @@
 
 @section('content')
   <div class="row map-container">
-      <div class="col s3 detail-sidebar">
+      <div class="col hide-on-small-only m3 detail-sidebar">
         <div class="card detail-sidebar__card">
           <div class="card-image">
             <img src="img/addPhoto.png" alt="" id="content-image">
@@ -16,15 +16,34 @@
               Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
             </p>
           </div>
-          <div class="card-action">
-            <a href="#">Do something</a>
-          </div>
         </div>
       </div>
-      <div class="col s9 detail-map">
+      <a href="#" class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
+        <i class="material-icons">arrow_forward</i>
+      </a>
+      <div class="col s12 m9 detail-map">
         <div id="map"></div>
       </div>
+
+      
   </div>
+
+  <div class="row side-nav" style="" id="mobile-demo-2">
+    <div class="col s12 show-on-small detail-sidebar">
+      <div class="card detail-sidebar__card">
+        <div class="card-image">
+          <img src="img/addPhoto.png" alt="" id="content-image-2">
+        </div>
+        <div id="content-sidebar-2" class="card-content">
+          <p>
+            Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
 @endsection
 
 @section('extra-js')
@@ -109,9 +128,9 @@
                     lng : lng
                   }
                 }).done(function(res){
-                    $('#content-image').attr('src', 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + res.latitude + ',' + res.longitude + '&key=AIzaSyCVZd8XiGUXj6RdybBK61VfTQL4dQ53X8U&fov=120');
-                    $('#content-sidebar').empty();
-                    $('#content-sidebar').append(`
+                    $('#content-image, #content-image-2').attr('src', 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + res.latitude + ',' + res.longitude + '&key=AIzaSyCVZd8XiGUXj6RdybBK61VfTQL4dQ53X8U&fov=120');
+                    $('#content-sidebar, #content-sidebar-2').empty();
+                    $('#content-sidebar, #content-sidebar-2').append(`
                         <p>Ciudad : ${res.city}</p>
                         <p>Creado en : ${res.created_at}</p>
                         <p>Detalle : ${res.detail}</p>

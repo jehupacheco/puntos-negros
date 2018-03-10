@@ -17,6 +17,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'api'], function() {
+    Route::post('login', 'Auth\LoginController@loginMobile')->name('api.login');
+    Route::get('blackpoints', 'API\BlackPointController@index')->name('api.blackpoints');
+    Route::post('blackpoints/show', 'API\BlackPointController@show')->name('api.blackpoints.show');
+});
+
 Route::group(['prefix' => 'blackpoint'], function() {
     Route::post('/', ['as' => 'blackpoint.show', 'uses' => 'BlackPointController@show']);
     Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
@@ -28,7 +34,7 @@ Route::group(['prefix' => 'blackpoint'], function() {
 
 Route::group(['prefix' => 'reporte'], function() {
     Route::get('/', 'ReportController@index')->name('report');
-    Route::get('/departamento/{department}', ['as' => 'report.department', 'uses' => 'ReportController@byDepartment']);
+    Route::get('/departamento/{city}', ['as' => 'report.department', 'uses' => 'ReportController@byDepartment']);
 });
 
 
