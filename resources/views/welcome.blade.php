@@ -141,6 +141,8 @@
                     $('#content-sidebar, #content-sidebar-2').append(`
                         <p>Ciudad : ${res.city}</p>
                         <p>Creado en : ${res.created_at}</p>
+                        <p>Creado por : ${res.user}</p>
+                        <p>Estado actual : ${res.status}</p>
                         <p>Detalle : ${res.detail}</p>
                     `);
 
