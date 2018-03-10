@@ -67,7 +67,7 @@
                     @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
-                        
+
                         <li>
                           <a href="{{ url('/') }}">
                             Home

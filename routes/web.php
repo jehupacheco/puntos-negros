@@ -21,6 +21,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('login', 'Auth\LoginController@loginMobile')->name('api.login');
     Route::get('blackpoints', 'API\BlackPointController@index')->name('api.blackpoints');
     Route::post('blackpoints/show', 'API\BlackPointController@show')->name('api.blackpoints.show');
+    Route::post('blackpoints/store', 'API\BlackPointController@store')->name('api.blackpoints.store');
 });
 
 Route::group(['prefix' => 'blackpoint'], function() {

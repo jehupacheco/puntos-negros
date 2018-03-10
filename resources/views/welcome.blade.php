@@ -17,6 +17,9 @@
             </p>
           </div>
         </div>
+          <ul>
+            <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
+          </ul>
       </div>
       <a href="#" class="hide-on-large-only btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
         <i class="material-icons">arrow_forward</i>
@@ -25,7 +28,7 @@
         <div id="map"></div>
       </div>
 
-      
+
   </div>
 
   <div class="row side-nav" style="" id="mobile-demo-2">
@@ -43,7 +46,7 @@
     </div>
   </div>
 
-  
+
 @endsection
 
 @section('extra-js')
@@ -96,7 +99,7 @@
                   bounds.extend(place.geometry.location);
                 }
               });
-              
+
               map.fitBounds(bounds);
 
             });
