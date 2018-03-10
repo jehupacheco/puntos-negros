@@ -22,7 +22,8 @@ Route::group(['prefix' => 'blackpoint'], function() {
     Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
     Route::post('/store', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@store']);
     Route::get('/list', ['as' => 'blackpoint.list', 'uses' => 'BlackPointController@list']);
-    Route::get('/edit/{blackpoint}', ['as' => 'blackpoint.edit', 'uses' => 'BlackPointController@edit']);
+    Route::get('/edit/{blackPoint}', ['as' => 'blackpoint.edit', 'uses' => 'BlackPointController@edit']);
+    Route::post('/update/{blackPoint}', ['as' => 'blackpoint.update', 'uses' => 'BlackPointController@update']);
 });
 
 Route::group(['prefix' => 'reporte'], function() {
