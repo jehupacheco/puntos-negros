@@ -4,6 +4,29 @@
 @section('content')
 <div class="row">
   <div class="col s10 m8 offset-s1 offset-m2">
+    @if(session()->has('message'))
+      <div class="chip">
+        {{ session('message') }}
+        <i class="close material-icons">close</i>
+      </div>
+    @endif
+  </div>
+</div>
+<div class="row">
+    <div class="col s10 m8 offset-s1 offset-m2">
+        @if (count($errors) > 0)
+          @foreach ($errors->all() as $error)
+            <div class="chip">
+              {{ $error }}
+              <i class="close material-icons">close</i>
+            </div>
+            <br>
+          @endforeach
+        @endif
+    </div>
+</div>
+<div class="row">
+  <div class="col s10 m8 offset-s1 offset-m2">
     <div class="card" style="margin-top: 50px">
       <div class="card-content">
         <form method="POST" action="{{route('blackpoint.update', ['blackPoint' => $blackPoint])}}">
@@ -77,6 +100,9 @@
 
       // Create the search box and link it to the UI element.
       inputLocation = document.getElementById('lat-lng');
+
+      // Create the search box and link it to the UI element.
+      inputLocation = document.getElementById('lat-lng');
       var input = document.createElement('input');
       var container = document.createElement('div');
       var searchBox = new google.maps.places.SearchBox(input);
@@ -89,17 +115,9 @@
           return false;
         }
       });
-
       container.classList.add('help-me-please-container');
       container.appendChild(input);
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
-      // Create the search box and link it to the UI element.
-      inputLocation = document.getElementById('lat-lng');
-      map.controls[google.maps.ControlPosition.TOP_LEFT].addListener('insert_at', function() {
-
-      });
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-      input.style['display'] = 'block';
 
       // Bias the SearchBox results towards current map's viewport.
       map.addListener('bounds_changed', function() {
