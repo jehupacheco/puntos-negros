@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <a href="#" class="hide-on-large-only btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
+      <a href="#" id="arrow-button" class="hide-on-large-only btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
         <i class="material-icons">arrow_forward</i>
       </a>
       <div class="col s12 m12 l9 detail-map">
@@ -138,6 +138,10 @@
                         <p>Creado en : ${res.created_at}</p>
                         <p>Detalle : ${res.detail}</p>
                     `);
+
+                    if ($(window).width() < 992) {
+                      $('#arrow-button').sideNav('show');
+                    }
                   }).fail(function(err){
                     console.log(err);
                   })
