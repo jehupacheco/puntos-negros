@@ -12,7 +12,7 @@ class BlackPointController extends Controller
     public function index()
     {
         $blackPoints = BlackPoint::all()->map(function($item) {
-            return ['lat' => (double)$item->latitude, 'lng' => (double)$item->longitude ];
+            return ['lat' => (double)$item->latitude, 'lng' => (double)$item->longitude, 'id' => $item->id ];
         });
 
         $class = ['map-body'];
@@ -22,9 +22,12 @@ class BlackPointController extends Controller
 
     public function show()
     {
+
         $latitude = request('lat');
         $longitude = request('lng');
         $blackPoint = BlackPoint::where('latitude', $latitude)->where('longitude', $longitude)->get();
+        $blackPoint = BlackPoint::where('id',1)->get();
+
         $blackPoint = $blackPoint->map(function($item) {
             return [
                 "detail" => $item->detail,
@@ -36,7 +39,7 @@ class BlackPointController extends Controller
                 "created_at" => Carbon::parse($item->created_at)->format('d/m/Y'),
             ];
         });
-        return $blackPoint;
+        return $blackPoint[0];
     }
 
     public function create()

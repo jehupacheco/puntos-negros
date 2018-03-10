@@ -7,7 +7,7 @@
           <div class="card-image">
             <img src="img/addPhoto.png" alt="">
           </div>
-          <div class="card-content">
+          <div id="content-sidebar" class="card-content">
             <p>
               Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
             </p>
@@ -40,11 +40,43 @@
             // create an array of markers based on a given "locations" array.
             // The map() method here has nothing to do with the Google Maps API.
             var markers = locations.map(function(location, i) {
+              console.log(location);
             return new google.maps.Marker({
                 position: location,
                 label: labels[i % labels.length]
             });
             });
+
+            markers.forEach(marker => {
+              marker.addListener('click', function(){
+                let lat = this.position.lat();
+                let lng = this.position.lng();
+
+                //ajax request
+                $.ajax({
+                  url: '{{route("blackpoint.show")}}',
+                  method: 'POST',
+                  data: {
+                    lat : lat,
+                    lng : lng
+                  }
+                })
+                  .done(function(res){
+                    console.log(res);
+                    // actualizar el sidebar con la info que manden
+                    $('#content-sidebar').empty();
+                    $('#content-sidebar').append(`
+                      <p>Ciudad : ${res.city_id}</p>
+                      <p>Creado en : ${res.city_id}</p>
+                      <p>Detalle : ${res.detail}</p>
+                    `);
+
+                  })
+                  .fail(function(err){
+                    console.log(err);
+                  })
+              })
+            })
 
             // Add a marker clusterer to manage the markers.
             var markerCluster = new MarkerClusterer(map, markers,

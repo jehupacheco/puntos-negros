@@ -11,6 +11,6 @@ class BlackPointsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\BlackPoint::class, 400)->create();
+        factory(App\Models\BlackPoint::class, 20)->create();
     }
 }

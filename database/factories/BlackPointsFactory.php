@@ -15,8 +15,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\BlackPoint::class, function (Faker $faker) {
     return [
-        'latitude' => $faker->latitude(-12.046374, -8.086394),
-        'longitude' => $faker->longitude(-76.042793,-75.142893),
+        'latitude' => $faker->latitude(-12.04637400000000, -8.08639400000000),
+        'longitude' => $faker->longitude(-76.04279300000000,-75.14289300000000),
         'detail' => $faker->text(50), // secret
         'city_id' => rand(1,25),
         'status_id' => 1,

@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/reporte', 'ReportController@index')->name('report');
 
 Route::group(['prefix' => 'blackpoint'], function() {
-    Route::post('/', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@show']);
+    Route::post('/', ['as' => 'blackpoint.show', 'uses' => 'BlackPointController@show']);
     Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
     Route::post('/store', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@store']);
 });

@@ -16,8 +16,8 @@ class CreateBlackPointsTable extends Migration
         Schema::create('black_points', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('detail');
-            $table->decimal('latitude',16,12);
-            $table->decimal('longitude',16,12);
+            $table->decimal('latitude',16,14);
+            $table->decimal('longitude',16,14);
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')
                 ->references('id')
