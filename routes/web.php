@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'blackpoint'], function() {
+    Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
+    Route::post('/store', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@store']);
+});
