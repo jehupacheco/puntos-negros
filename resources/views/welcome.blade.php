@@ -6,8 +6,8 @@
 
 @section('content')
   <div class="row map-container">
-      <div class="col hide-on-med-and-down m3 detail-sidebar">
-        <div class="card detail-sidebar__card">
+      <div class="col hide-on-med-and-down m3 detail-sidebar" style="height: 100%">
+        <div class="card detail-sidebar__card" style="max-height: 100%; overflow-y: auto; overflow-x: hidden">
           <div class="card-image" style="background-color: #CCC;">
             <img src="img/addPhoto.png" alt="" id="content-image">
           </div>
@@ -16,12 +16,14 @@
               Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
             </p>
           </div>
+          <div class="card-action">
+            @auth
+              <ul style="text-align: center">
+                <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
+              </ul>
+            @endauth
+          </div>
         </div>
-        @auth
-          <ul style="text-align: center">
-            <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
-          </ul>
-          @endauth
       </div>
       <a href="#" id="arrow-button" class="hide-on-large-only btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
         <i class="material-icons">arrow_forward</i>
@@ -43,6 +45,13 @@
           <p>
             Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
           </p>
+        </div>
+        <div class="card-action">
+          @auth
+            <ul style="text-align: center">
+              <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
+            </ul>
+          @endauth
         </div>
       </div>
     </div>
@@ -133,6 +142,7 @@
 
             markers.forEach(marker => {
               marker.addListener('click', function(e){
+                var thisMarker = this;
                 let lat = e.latLng.lat();
                 let lng = e.latLng.lng();
 
@@ -152,7 +162,7 @@
                         <p>Creado en : ${res.created_at}</p>
                         <p>Creado por : ${res.user}</p>
                         <p>Estado actual : ${res.status}</p>
-                        <p>Detalle : ${res.detail}</p>
+                        <p>Comentarios : ${descriptions[thisMarker.key]}</p>
                     `);
 
                     if ($(window).width() < 992) {
