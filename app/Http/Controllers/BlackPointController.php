@@ -63,10 +63,12 @@ class BlackPointController extends Controller
         $blackPoint->detail = $request['detail'];
         $blackPoint->latitude = $latitude;
         $blackPoint->longitude = $longitude;
-
-        dd($blackPoint);
+        $blackPoint->city_id = $request['city'];
+        $blackPoint->user_id = \Auth::user()->id;
 
         $blackPoint->save();
+
+        return redirect()->back()->with('message','El punto se ha registrado con éxito');
     }
 
     public function update()

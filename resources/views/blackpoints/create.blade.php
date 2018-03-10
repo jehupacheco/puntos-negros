@@ -63,8 +63,26 @@
     </style>
   </head>
   <body>
+    <div class="row">
+      <div class="col-sm-12">
+        @if(session()->has('message'))
+          <div class="alert alert-success alert-dismissible fade in page-header" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            {{ session('message') }}
+          </div>
+        @endif
+      </div>
+    </div>
     <form method="POST" action="{{route('blackpoint.store')}}">
       <input id="lat-lng" name="lat-lng" class="controls" type="text">
+      <select class="controls" name="city" id="city" onchange="searchByCity()">
+      <option value="">[Seleccione]</option>
+      @foreach ($cities as $city)
+        <option value="{{$city->id}}">{{$city->name}}</option>
+      @endforeach
+      </select>
       <input id="business-address" name="business-address" class="controls" type="text" placeholder="Search Box">
       <textarea id="detail" class="controls" name="detail"></textarea>
       <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
@@ -77,7 +95,7 @@
 
     var inputLocation = document.getElementById('lat-lng');
 
-
+    var city = document.getElementById('city');
 
     function initAutocomplete() {
 
@@ -163,8 +181,6 @@
 
             }
 
-
-
             // Create a marker for each place.
 
             marker = new google.maps.Marker({
@@ -185,12 +201,10 @@
 
             marker.addListener('dragend', locateMarker);
 
-
-
             markers.push(marker);
 
-            inputLocation.value = JSON.stringify(marker.getPosition());
 
+            inputLocation.value = JSON.stringify(marker.getPosition());
 
 
             if (place.geometry.viewport) {
@@ -211,6 +225,7 @@
 
         });
 
+
     }
 
 
@@ -221,12 +236,17 @@
 
     }
 
+    function searchByCity() {
+
+      text = city.options[city.selectedIndex].innerText;
+      document.getElementById('business-address').value = text;
+      document.getElementById('business-address').focus();
+    }
+
     </script>
 
     <script async defer
 
      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCAsXtg84E5bv3_1AGw7ys1akgLeO-3qs&libraries=places&callback=initAutocomplete"></script>
-    <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCAsXtg84E5bv3_1AGw7ys1akgLeO-3qs&libraries=places&callback=initAutocomplete"
-         async defer></script-->
   </body>
 </html>
