@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BlackPoint;
 use App\Models\City;
+use Carbon\Carbon;
 
 class BlackPointController extends Controller
 {
@@ -21,7 +22,20 @@ class BlackPointController extends Controller
 
     public function show()
     {
-        $blackPoint = BlackPoint::find(1);
+        $latitude = request('lat');
+        $longitude = request('lng');
+        $blackPoint = BlackPoint::where('latitude', $latitude)->where('longitude', $longitude)->get();
+        $blackPoint = $blackPoint->map(function($item) {
+            return [
+                "detail" => $item->detail,
+                "latitude" => $item->latitude,
+                "longitude" => $item->longitude,
+                "city" => $item->city->name,
+                "status" => $item->status->name,
+                "user" => $item->user->name,
+                "created_at" => Carbon::parse($item->created_at)->format('d/m/Y'),
+            ];
+        });
         return $blackPoint;
     }
 
