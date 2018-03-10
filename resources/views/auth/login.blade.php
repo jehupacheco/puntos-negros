@@ -5,6 +5,9 @@
     <div class="row">
         <div class="col m8 offset-m2">
             <div class="card" style="margin-top: 50px">
+                <div class="card-image">
+                    <img style="height: 155px; width: auto; margin: auto;" src="img/logo.png" alt="">
+                </div>
                 <div class="card-content">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
