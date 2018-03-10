@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'user_type_id' => '2',//el unico registro sera por app y sera de tipo 2
         ]);
     }
 }
