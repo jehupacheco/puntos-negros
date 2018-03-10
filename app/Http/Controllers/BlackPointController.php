@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlackPoint;
+use App\Models\City;
 
 class BlackPointController extends Controller
 {
@@ -20,22 +21,27 @@ class BlackPointController extends Controller
 
     public function create()
     {
-        return view('blackpoints.create');
+        $cities = City::all();
+
+        return view('blackpoints.create',compact('cities'));
     }
 
     public function store(Request $request)
     {
+        $location = json_decode($request['lat-lng'],true);
 
-        dd(json_decode($request['lat-lng'],true));
+        $latitude = $location['lat'];
+        $longitude = $location['lng'];
 
         $request = request()->all();
 
         $blackPoint = new BlackPoint();
 
-        $blackPoint->details = $request['details'];
-        $blackPoint->latitude = $request['latitude'];
-        $blackPoint->longitude = $request['longitude'];
+        $blackPoint->detail = $request['detail'];
+        $blackPoint->latitude = $latitude;
+        $blackPoint->longitude = $longitude;
 
+        dd($blackPoint);
 
         $blackPoint->save();
     }
@@ -46,3 +52,7 @@ class BlackPointController extends Controller
     }
 
 }
+
+
+
+
