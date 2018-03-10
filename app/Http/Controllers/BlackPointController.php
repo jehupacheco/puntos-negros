@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Models\BlackPoint;
 use App\Models\City;
@@ -63,6 +64,18 @@ class BlackPointController extends Controller
     {
         $location = json_decode($request['lat-lng'],true);
 
+        $request = request()->all();
+        $nice_names = [
+            'city' => 'departamento',
+            'detail' => 'detalle',
+        ];
+        $validator = Validator::make($request, [
+            'city' => 'required',
+            'detail' => 'required',
+        ]);
+        $validator->setAttributeNames($nice_names);
+        $validator->validate();
+
         $latitude = $location['lat'];
         $longitude = $location['lng'];
 
@@ -100,6 +113,20 @@ class BlackPointController extends Controller
     public function update(BlackPoint $blackPoint, Request $request)
     {
         $location = json_decode($request['lat-lng'],true);
+
+        $request = request()->all();
+        $nice_names = [
+            'city' => 'departamento',
+            'detail' => 'detalle',
+            'status' => 'Estado'
+        ];
+        $validator = Validator::make($request, [
+            'city' => 'required',
+            'detail' => 'required',
+            'status' => 'required'
+        ]);
+        $validator->setAttributeNames($nice_names);
+        $validator->validate();
 
         $latitude = $location['lat'];
         $longitude = $location['lng'];
