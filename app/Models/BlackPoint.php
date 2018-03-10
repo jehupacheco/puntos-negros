@@ -1,9 +1,11 @@
 <?
 namespace App\Models;
 
-class UserType {
+class BlackPoint {
 
-    public function userType()
+    protected $guard = [];
+
+    public function user()
     {
         return $this->belongsTo('User');
     }
