@@ -29,9 +29,11 @@ class ReportController extends Controller
     public function byDepartment(City $city)
     {
         $data =  DB::table('black_points')
-                ->select(DB::raw('count(*) as count, black_points.city_id, cities.name'))
+                ->select(DB::raw('count(*) as count, DATE_FORMAT(black_points.created_at,"%b") as month'))
+                ->where('black_points.city_id', $city->id)
+                ->whereRaw(DB::raw('black_points.created_at <= NOW() and black_points.created_at >= Date_add(Now(),interval - 12 month)'))
                 ->leftJoin('cities', 'cities.id', '=', 'black_points.city_id')
-                ->groupBy(['city_id', 'cities.name'])
+                ->groupBy(['month'])
                 ->get();
 
         return view('reports.department', compact('data'));
