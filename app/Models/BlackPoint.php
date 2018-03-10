@@ -8,12 +8,12 @@ class BlackPoint extends Model
 {
     protected $guard = [];
 
-    public function city();
+    public function city()
     {
         return $this->belongsTo(City::class);
     }
 
-    public function user();
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

@@ -11,16 +11,6 @@ class BlackPointsTableSeeder extends Seeder
      */
     public function run()
     {
-        $black_points = [
-            [
-                'latitude' => -12.046374,
-                'longitude' => -77.042793,
-                'city_id' => rand(1,25),
-                'status_id' => 1,
-                'user_id' => 1,
-            ]
-        ];
-
-        DB::table('black_points')->insert($black_points);
+        factory(App\Models\BlackPoint::class, 400)->create();
     }
 }
