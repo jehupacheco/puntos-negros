@@ -34,7 +34,7 @@
         @endguest
         <nav>
             <div class="nav-wrapper">
-                <a class="brand-logo" href="{{ url('/') }}">
+                <a class="brand-logo" href="{{ url('/home') }}">
                     Puntos Negros
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -42,7 +42,6 @@
                 <ul class="right hide-on-med-and-down">
                     @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
                         <li>
                             <a class="dropdown-button" href="#!" data-activates="dropdown1">
@@ -55,7 +54,6 @@
                 <ul class="side-nav" id="mobile-demo">
                     @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
                         <li>
                             <a href="{{ route('logout') }}"
