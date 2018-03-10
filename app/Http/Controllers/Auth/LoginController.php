@@ -66,7 +66,7 @@ class LoginController extends Controller
         return ($user && $this->guard()->attempt(
                     $this->credentials($request), $request->has('remember')
                 ))
-        ? response()->json(['success' => 'true'], 200)
+        ? response()->json(['success' => 'true', 'user' => $user], 200)
         : response()->json(['success' => 'false'], 400);
 
     }
