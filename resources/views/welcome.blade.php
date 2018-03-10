@@ -9,7 +9,7 @@
       <div class="col s3 detail-sidebar">
         <div class="card detail-sidebar__card">
           <div class="card-image">
-            <img src="img/addPhoto.png" alt="">
+            <img src="img/addPhoto.png" alt="" id="content-image">
           </div>
           <div id="content-sidebar" class="card-content">
             <p>
@@ -65,19 +65,16 @@
                     lat : lat,
                     lng : lng
                   }
-                })
-                  .done(function(res){
+                }).done(function(res){
                     console.log(res);
-                    // actualizar el sidebar con la info que manden
+                    $('#content-image').attr('src', 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + res.latitude + ',' + res.longitude + '&key=AIzaSyCVZd8XiGUXj6RdybBK61VfTQL4dQ53X8U&fov=120');
                     $('#content-sidebar').empty();
                     $('#content-sidebar').append(`
-                      <p>Ciudad : ${res.city}</p>
-                      <p>Creado en : ${res.created_at}</p>
-                      <p>Detalle : ${res.detail}</p>
+                        <p>Ciudad : ${res.city}</p>
+                        <p>Creado en : ${res.created_at}</p>
+                        <p>Detalle : ${res.detail}</p>
                     `);
-
-                  })
-                  .fail(function(err){
+                  }).fail(function(err){
                     console.log(err);
                   })
               })

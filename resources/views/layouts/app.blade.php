@@ -34,7 +34,7 @@
         @endguest
         <nav class="deep-purple darken-1">
             <div class="nav-wrapper">
-                <a class="brand-logo" href="{{ url('/home') }}" style="padding-left:1rem;">
+                <a class="brand-logo" href="{{ url('/') }}" style="padding-left:1rem;">
                     Puntos Negros
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
