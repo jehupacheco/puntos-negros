@@ -19,7 +19,7 @@
           <div class="card-action">
             @auth
               <ul style="text-align: center">
-                <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
+                <li style="min-width: 250px;"><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
               </ul>
             @endauth
           </div>

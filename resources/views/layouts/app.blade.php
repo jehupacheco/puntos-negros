@@ -59,7 +59,7 @@
                             <input class="white-text" type="text" placeholder="Busca un lugar" style="margin-bottom: 10px; margin-top: 10px;" id="nav-input-search">
                         </div>
                         @endif
-                        <li style="min-width: 250px;"><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
+                        <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
                         @guest
                             <li style="min-width: 100px; overflow: hidden"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         @else
