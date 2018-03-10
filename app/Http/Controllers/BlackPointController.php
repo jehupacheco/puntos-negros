@@ -12,7 +12,10 @@ class BlackPointController extends Controller
         $blackPoints = BlackPoint::all()->map(function($item) {
             return ['lat' => (double)$item->latitude, 'lng' => (double)$item->longitude ];
         });
-        return view('welcome', compact('blackPoints'));
+        
+        $class = ['map-body'];
+        
+        return view('welcome', compact('blackPoints', 'class'));
     }
 
     public function create()

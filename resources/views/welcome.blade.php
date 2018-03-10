@@ -2,8 +2,8 @@
 
 @section('content')
   <div class="row">
-      <div class="col s3" style="padding: 0px;">
-        <div class="card" style="margin: 0px;">
+      <div class="col s3 detail-sidebar">
+        <div class="card detail-sidebar__card">
           <div class="card-image">
             <img src="img/addPhoto.png" alt="">
           </div>
@@ -17,8 +17,8 @@
           </div>
         </div>
       </div>
-      <div class="col s9" style="padding: 0px;">
-        <div id="map" style="height: 90vh; width: 100%"></div>
+      <div class="col s9 detail-map">
+        <div id="map"></div>
       </div>
   </div>
 @endsection

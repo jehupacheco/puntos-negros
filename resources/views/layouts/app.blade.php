@@ -14,9 +14,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
     @yield('extra-css')
 </head>
-<body>
+<body class="{{ isset($class) ? implode($class,',') : '' }}">
     <div id="app">
         @guest
             <div style="display: none;"></div>
