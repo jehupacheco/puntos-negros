@@ -2,40 +2,40 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="row">
-    <div class="col s10 m8 offset-s1 offset-m2">
-      <div class="card" style="margin-top: 50px">
-        <div class="card-content">
-          <form method="POST" action="{{route('blackpoint.store')}}">
-            <input id="lat-lng" name="lat-lng" class="controls" type="hidden">
-            <div class="input-field">
-              <select class="controls" name="city" id="city" onchange="searchByCity()">
-                <option value="" disabled selected>Selecciona tu ciudad</option>
-                @foreach ($cities as $city)
-                  <option value="{{$city->id}}">{{$city->name}}</option>
-                @endforeach
-              </select>
-              <label>Ciudad</label>
-            </div>
-            <div class="input-field">
-              <input id="latLngData" name="latLngData" type="text">
-              <label>Ubicación</label>
-            </div>
-            <div class="input-field">
-              <textarea id="detail" class="materialize-textarea" name="detail"></textarea>
-              <label>Descripcion</label>
-            </div>
-            <div class="input-field">
-              <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
-            </div>
-          </form>
-        </div>
+<div class="row">
+  <div class="col s10 m8 offset-s1 offset-m2">
+    <div class="card" style="margin-top: 50px">
+      <div class="card-content">
+        <form method="POST" action="{{route('blackpoint.store')}}">
+          <input id="lat-lng" name="lat-lng" class="controls" type="hidden">
+          <div class="input-field">
+            <select class="controls" name="city" id="city" onchange="searchByCity()">
+              <option value="" disabled selected>Selecciona tu ciudad</option>
+              @foreach ($cities as $city)
+                <option value="{{$city->id}}">{{$city->name}}</option>
+              @endforeach
+            </select>
+            <label>Ciudad</label>
+          </div>
+          <div class="input-field">
+            <input id="latLngData" name="latLngData" type="text" style="display: none">
+            {{--  <label>Ubicación</label>  --}}
+          </div>
+          <div class="input-field">
+            <textarea id="detail" class="materialize-textarea" name="detail"></textarea>
+            <label>Descripcion</label>
+          </div>
+          <div class="input-field">
+            <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+          </div>
+        </form>
       </div>
     </div>
   </div>
+  <div class="col s10 m8 offset-s1 offset-m2">
+    <div id="map" style="height: 500px"></div>
+  </div>
 </div>
-  <div id="map"></div>
 @endsection
 
 @section('extra-js')
@@ -61,7 +61,12 @@
       inputLocation = document.getElementById('lat-lng');
       var input = document.getElementById('latLngData');
       var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].addListener('insert_at', function() {
+        console.log('Hola papu');
+      });
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      input.style['display'] = 'block';
+
 
       // Bias the SearchBox results towards current map's viewport.
       map.addListener('bounds_changed', function() {
