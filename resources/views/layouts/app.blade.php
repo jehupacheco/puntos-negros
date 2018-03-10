@@ -49,7 +49,7 @@
                     @guest
                         <li style="min-width: 100px; overflow: hidden"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
-                        <li style="min-width: 250px;"><a href="{{ route('report') }}" class="waves-effect waves-light btn">Reportes</a></li>
+                        <li style="min-width: 180px;"><a href="{{ route('report') }}" class="waves-effect waves-light btn">Reportes</a></li>
                         <li style="min-width: 200px; overflow: hidden">
                             <a class="dropdown-button" href="#!" data-activates="dropdown1">
                                 Hola, {{ Auth::user()->name }}

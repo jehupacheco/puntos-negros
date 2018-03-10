@@ -59,6 +59,12 @@
       input.classList.add('help-me-please');
       input.setAttribute('placeholder', 'Ingresa una dirección');
       input.setAttribute('id', 'latLngData');
+      $(input).on('keydown', function (event) {
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
       container.classList.add('help-me-please-container');
       container.appendChild(input);
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
