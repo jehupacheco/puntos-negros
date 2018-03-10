@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
         'blackpoint',
         'api/login',
         'api/blackpoints/show',
+        'api/blackpoints/store',
     ];
 }

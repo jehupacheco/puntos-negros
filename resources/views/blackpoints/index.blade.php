@@ -15,6 +15,9 @@
     </div>
   </div>
   <h2>Lista de Puntos Negros</h2>
+    <ul>
+    <li style="min-width: 250px;"><a href="{{ route('blackpoint.index') }}" class="waves-effect waves-light btn">Ver como mapa</a></li>
+  </ul>
   <table>
     <thead>
       <tr>
@@ -36,12 +39,10 @@
         </tr>
       @endforeach
     </tbody>
-    
-  </table>
 
-  <div id="map"></div>
+  </table>
 @endsection
 
 @section('extra-js')
-  
+
 @endsection

@@ -55,24 +55,20 @@ class BlackPointController extends Controller
 
     public function store(Request $request)
     {
-        $location = json_decode($request['lat-lng'],true);
-
-        $latitude = $location['lat'];
-        $longitude = $location['lng'];
-
-        $request = request()->all();
-
         $blackPoint = new BlackPoint();
 
-        $blackPoint->detail = $request['detail'];
-        $blackPoint->latitude = $latitude;
-        $blackPoint->longitude = $longitude;
-        $blackPoint->city_id = $request['city'];
-        $blackPoint->user_id = \Auth::user()->id;
+        $blackPoint->detail = $request->detail;
+        $blackPoint->latitude = $request->latitude;
+        $blackPoint->longitude = $request->longitude;
+        $blackPoint->city_id = $request->city;
+        $blackPoint->user_id = 2;
 
         $blackPoint->save();
 
-        return redirect()->back()->with('message','El punto se ha registrado con éxito');
+        if($blackPoint)
+            return response()->json(['success' => 'true'], 200);
+        else
+            return response()->json(['message' => 'false'], 400);
     }
 
 }
