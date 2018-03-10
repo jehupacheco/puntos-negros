@@ -21,7 +21,8 @@ class BlackPointController extends Controller
 
     public function show()
     {
-        return true;
+        $blackPoint = BlackPoint::find(1);
+        return $blackPoint;
     }
 
     public function create()
