@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,13 +25,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Hash the password given
-     *
-     * @param string $password
-     */
-    public function setPasswordAttribute($password)
+    public function userType()
     {
-        $this->attributes['password'] = bcrypt($password);
+        return $this->hasMany('UserType');
     }
+
 }
