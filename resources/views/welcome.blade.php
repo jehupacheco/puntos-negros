@@ -6,7 +6,7 @@
 
 @section('content')
   <div class="row map-container">
-      <div class="col hide-on-small-only m3 detail-sidebar">
+      <div class="col hide-on-med-and-down m3 detail-sidebar">
         <div class="card detail-sidebar__card">
           <div class="card-image" style="background-color: #CCC;">
             <img src="img/addPhoto.png" alt="" id="content-image">
@@ -18,10 +18,10 @@
           </div>
         </div>
       </div>
-      <a href="#" class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
+      <a href="#" class="hide-on-large-only btn-floating btn-large waves-effect waves-light red button-floating button-collapse" data-activates="mobile-demo-2">
         <i class="material-icons">arrow_forward</i>
       </a>
-      <div class="col s12 m9 detail-map">
+      <div class="col s12 m12 l9 detail-map">
         <div id="map"></div>
       </div>
 
@@ -116,14 +116,6 @@
                 });
               }));
             });
-
-            // var markers = locations.map(function(location, i) {
-
-            //   return new google.maps.Marker({
-            //     position: location,
-            //     // label: labels[i % labels.length]
-            //   });
-            // });
 
             markers.forEach(marker => {
               marker.addListener('click', function(e){
