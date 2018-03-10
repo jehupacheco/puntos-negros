@@ -9,6 +9,10 @@
         <form method="POST" action="{{route('blackpoint.store')}}">
           <input id="lat-lng" name="lat-lng" class="controls" type="hidden">
           <div class="input-field">
+            <textarea id="detail" class="materialize-textarea" name="detail"></textarea>
+            <label>Descripcion</label>
+          </div>
+          <div class="input-field">
             <select class="controls" name="city" id="city" onchange="searchByCity()">
               <option value="" disabled selected>Selecciona tu ciudad</option>
               @foreach ($cities as $city)
@@ -17,23 +21,13 @@
             </select>
             <label>Ciudad</label>
           </div>
-          <div class="input-field">
-            <input id="latLngData" name="latLngData" type="text" style="display: none">
-            {{--  <label>Ubicación</label>  --}}
-          </div>
-          <div class="input-field">
-            <textarea id="detail" class="materialize-textarea" name="detail"></textarea>
-            <label>Descripcion</label>
-          </div>
-          <div class="input-field">
+          <div id="map" style="height: 500px"></div>
+          <div class="input-field" style="text-align: right;">
             <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
           </div>
         </form>
       </div>
     </div>
-  </div>
-  <div class="col s10 m8 offset-s1 offset-m2">
-    <div id="map" style="height: 500px"></div>
   </div>
 </div>
 @endsection
@@ -59,13 +53,15 @@
 
       // Create the search box and link it to the UI element.
       inputLocation = document.getElementById('lat-lng');
-      var input = document.getElementById('latLngData');
+      var input = document.createElement('input');
+      var container = document.createElement('div');
       var searchBox = new google.maps.places.SearchBox(input);
-      map.controls[google.maps.ControlPosition.TOP_LEFT].addListener('insert_at', function() {
-        console.log('Hola papu');
-      });
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-      input.style['display'] = 'block';
+      input.classList.add('help-me-please');
+      input.setAttribute('placeholder', 'Ingresa una dirección');
+      input.setAttribute('id', 'latLngData');
+      container.classList.add('help-me-please-container');
+      container.appendChild(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
 
 
       // Bias the SearchBox results towards current map's viewport.

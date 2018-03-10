@@ -10,3 +10,23 @@ html {
   box-shadow: none;
   border-bottom: 0;
 }
+
+.help-me-please-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.help-me-please {
+  border: 0 !important;
+  position: static !important;
+  padding: 10px !important;
+  background-color: white !important;
+  box-sizing: border-box !important;
+}
+
+.help-me-please:focus {
+  border: 0 !important;
+  box-shadow: none !important;
+}
