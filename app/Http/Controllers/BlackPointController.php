@@ -70,6 +70,11 @@ class BlackPointController extends Controller
         return redirect()->back()->with('message','El punto se ha registrado con éxito');
     }
 
+    public function list()
+    {
+        
+    }
+
     public function update()
     {
 

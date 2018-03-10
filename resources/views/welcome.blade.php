@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('extra-css')
+    <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-  <div class="row">
+  <div class="row map-container">
       <div class="col s3 detail-sidebar">
         <div class="card detail-sidebar__card">
           <div class="card-image">
@@ -41,16 +45,17 @@
             // The map() method here has nothing to do with the Google Maps API.
             var markers = locations.map(function(location, i) {
               console.log(location);
-            return new google.maps.Marker({
+
+              return new google.maps.Marker({
                 position: location,
                 label: labels[i % labels.length]
-            });
+              });
             });
 
             markers.forEach(marker => {
-              marker.addListener('click', function(){
-                let lat = this.position.lat();
-                let lng = this.position.lng();
+              marker.addListener('click', function(e){
+                let lat = e.latLng.lat();
+                let lng = e.latLng.lng();
 
                 //ajax request
                 $.ajax({
@@ -66,8 +71,8 @@
                     // actualizar el sidebar con la info que manden
                     $('#content-sidebar').empty();
                     $('#content-sidebar').append(`
-                      <p>Ciudad : ${res.city_id}</p>
-                      <p>Creado en : ${res.city_id}</p>
+                      <p>Ciudad : ${res.city}</p>
+                      <p>Creado en : ${res.created_at}</p>
                       <p>Detalle : ${res.detail}</p>
                     `);
 
