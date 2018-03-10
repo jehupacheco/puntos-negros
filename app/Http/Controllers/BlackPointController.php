@@ -26,7 +26,6 @@ class BlackPointController extends Controller
         $latitude = request('lat');
         $longitude = request('lng');
         $blackPoint = BlackPoint::where('latitude', $latitude)->where('longitude', $longitude)->get();
-        $blackPoint = BlackPoint::where('id',1)->get();
 
         $blackPoint = $blackPoint->map(function($item) {
             return [
