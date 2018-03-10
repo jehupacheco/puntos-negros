@@ -17,7 +17,7 @@ class BlackPointController extends Controller
 
     public function index()
     {
-        $blackPoints = BlackPoint::all()->map(function($item) {
+        $blackPoints = BlackPoint::where('status_id',1)->get()->map(function($item) {
             return [
                 'lat' => (double)$item->latitude,
                 'lng' => (double)$item->longitude,
