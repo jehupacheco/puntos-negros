@@ -19,6 +19,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -117,6 +119,7 @@
             $(".button-collapse").sideNav();
         });
     </script>
+
     @yield('extra-js')
 </body>
 </html>
