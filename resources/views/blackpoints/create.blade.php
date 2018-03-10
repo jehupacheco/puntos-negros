@@ -2,30 +2,39 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade in page-header" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-          {{ session('message') }}
+    <div class="col s10 m8 offset-s1 offset-m2">
+      <div class="card" style="margin-top: 50px">
+        <div class="card-content">
+          <form method="POST" action="{{route('blackpoint.store')}}">
+            <input id="lat-lng" name="lat-lng" class="controls" type="hidden">
+            <div class="input-field">
+              <select class="controls" name="city" id="city" onchange="searchByCity()">
+                <option value="" disabled selected>Selecciona tu ciudad</option>
+                @foreach ($cities as $city)
+                  <option value="{{$city->id}}">{{$city->name}}</option>
+                @endforeach
+              </select>
+              <label>Ciudad</label>
+            </div>
+            <div class="input-field">
+              <input id="latLngData" name="latLngData" type="text">
+              <label>Ubicación</label>
+            </div>
+            <div class="input-field">
+              <textarea id="detail" class="materialize-textarea" name="detail"></textarea>
+              <label>Descripcion</label>
+            </div>
+            <div class="input-field">
+              <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+            </div>
+          </form>
         </div>
-      @endif
+      </div>
     </div>
   </div>
-  <form method="POST" action="{{route('blackpoint.store')}}">
-    <input id="lat-lng" name="lat-lng" class="controls" type="hidden">
-    <select class="controls" name="city" id="city" onchange="searchByCity()">
-    <option value="">[Seleccione]</option>
-    @foreach ($cities as $city)
-      <option value="{{$city->id}}">{{$city->name}}</option>
-    @endforeach
-    </select>
-    <input id="latLngData" name="latLngData" class="controls" type="text" placeholder="Ubicación">
-    <textarea id="detail" class="controls" name="detail" placeholder="Detalle"></textarea>
-    <input type="submit" class="btn btn-primary" name="submit" value="Guardar">
-  </form>
+</div>
   <div id="map"></div>
 @endsection
 

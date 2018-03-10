@@ -40,6 +40,7 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
                     @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
