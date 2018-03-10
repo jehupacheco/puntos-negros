@@ -38,7 +38,9 @@ class ReportController extends Controller
                 ->orderBy('month')
                 ->get();
 
-        return view('reports.department', compact('data'));
+
+
+        return view('reports.department', compact('data','city'));
     }
 
 }

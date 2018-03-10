@@ -5,6 +5,7 @@
   <div class="col s10 m8 offset-s1 offset-m2">
     <div class="card" style="margin-top: 50px">
       <div class="card-content">
+        <h3>{{$city->name}}</h3>
         <h5>Número de incidencias en los últimos 12 meses</h5>
         <canvas id="report1" width="400"></canvas>
       </div>

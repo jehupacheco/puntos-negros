@@ -12,7 +12,6 @@ class BlackPointController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('create');
     }
 
     public function index()
@@ -103,19 +102,19 @@ class BlackPointController extends Controller
 
         $latitude = $location['lat'];
         $longitude = $location['lng'];
-        
+
         $blackPoint->detail = $request['detail'];
-        $blackPoint->status_id = $request['status']; 
+        $blackPoint->status_id = $request['status'];
         $blackPoint->latitude = $latitude;
         $blackPoint->longitude = $longitude;
         $blackPoint->city_id = $request['city'];
         $blackPoint->user_id = \Auth::user()->id;
         try {
-            $blackPoint->save();    
+            $blackPoint->save();
         } catch (Exception $e) {
             abort(500,$e);
         }
-        
+
         return redirect()->back()->with('message','El punto se ha actualizado con éxito');
     }
 
