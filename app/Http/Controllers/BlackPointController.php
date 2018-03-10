@@ -17,8 +17,13 @@ class BlackPointController extends Controller
     public function index()
     {
         $blackPoints = BlackPoint::all()->map(function($item) {
-            return ['lat' => (double)$item->latitude, 'lng' => (double)$item->longitude, 'id' => $item->id ];
-        });
+            return [
+                'lat' => (double)$item->latitude,
+                'lng' => (double)$item->longitude,
+                'id' => $item->id,
+                'latlng' => (double)$item->latitude.(double)$item->longitude,
+            ];
+        })->groupBy('latlng');
 
         $class = ['map-body'];
 
