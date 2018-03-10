@@ -32,12 +32,38 @@
         function initMap() {
 
             var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 5,
-            center: {lat: -12.046374, lng: -77.042793}
+              zoom: 5,
+              center: {lat: -12.046374, lng: -77.042793}
             });
 
             // Create an array of alphabetical characters used to label the markers.
             var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('nav-input-search');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].addListener('insert_at', function() {
+              console.log('Hola papu 2');
+            });
+            // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            input.style['display'] = 'block';
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+              searchBox.setBounds(map.getBounds());
+            });
+
+            searchBox.addListener('places_changed', function() {
+              var places = searchBox.getPlaces();
+
+              if (places.length == 0) {
+                return;
+              }
+              console.log('places: ', places);
+              // move to the first place in the array TODO
+            });
+
 
             // Add some markers to the map.
             // Note: The code uses the JavaScript Array.prototype.map() method to
@@ -87,5 +113,5 @@
       var locations = {!!$blackPoints!!}
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCAsXtg84E5bv3_1AGw7ys1akgLeO-3qs&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCAsXtg84E5bv3_1AGw7ys1akgLeO-3qs&libraries=places&callback=initMap"></script>
 @endsection
