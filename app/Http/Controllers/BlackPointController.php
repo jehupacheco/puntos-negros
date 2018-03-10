@@ -22,6 +22,7 @@ class BlackPointController extends Controller
                 'lng' => (double)$item->longitude,
                 'id' => $item->id,
                 'latlng' => (double)$item->latitude.(double)$item->longitude,
+                'detail' => $item->detail,
             ];
         })->groupBy('latlng');
 

@@ -112,14 +112,23 @@
             // create an array of markers based on a given "locations" array.
             // The map() method here has nothing to do with the Google Maps API.
             var markers = [];
+            var descriptions = [];
 
             Object.keys(locations).forEach(function(key) {
               markers = markers.concat(locations[key].map(function(location, i) {
-                return new google.maps.Marker({
+                return Object.assign(new google.maps.Marker({
                   position: location,
-                  label: String(locations[key].length),
+                  label: String(locations[key].length), 
+                }), {
+                  key: key,
                 });
               }));
+
+              var description = locations[key].map(function(location) {
+                return '<li>' + location.detail + '</li>';
+              }).join('');
+
+              descriptions[key] = '<div><ul>' + description + '</ul></div>';
             });
 
             markers.forEach(marker => {
