@@ -32,7 +32,7 @@
                 </li>
             </ul>
         @endguest
-        <nav>
+        <nav class="deep-purple darken-1">
             <div class="nav-wrapper">
                 <a class="brand-logo" href="{{ url('/home') }}">
                     Puntos Negros
