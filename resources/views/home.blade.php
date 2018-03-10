@@ -2,22 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    <div class="row">
+        <h1 class="header">Dashboard</h1>
+        <div class="col s6"><a href="#">Registrar punto</a></div>
+        <div class="col s6"><a href="{{route('report')}}">Reportes</a></div>
     </div>
 </div>
 @endsection
