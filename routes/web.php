@@ -15,7 +15,7 @@ Route::get('/', ['as' => 'blackpoint.index', 'uses' => 'BlackPointController@ind
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'BlackPointController@index')->name('home');
 
 Route::group(['prefix' => 'api'], function() {
     Route::post('login', 'Auth\LoginController@loginMobile')->name('api.login');
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('blackpoint/store', 'API\BlackPointController@store')->name('api.blackpoints.store');
 });
 
-Route::group(['prefix' => 'blackpoint'], function() {
+Route::group(['prefix' => 'blackpoint', 'middleware' => 'auth'], function() {
     Route::post('/', ['as' => 'blackpoint.show', 'uses' => 'BlackPointController@show']);
     Route::get('/create', ['as' => 'blackpoint.create', 'uses' => 'BlackPointController@create']);
     Route::post('/store', ['as' => 'blackpoint.store', 'uses' => 'BlackPointController@store']);

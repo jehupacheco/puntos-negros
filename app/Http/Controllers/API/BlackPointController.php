@@ -55,13 +55,14 @@ class BlackPointController extends Controller
 
     public function store(Request $request)
     {
+        // $user = new User($request->user->id);
         $blackPoint = new BlackPoint();
 
         $blackPoint->detail = $request->detail;
         $blackPoint->latitude = $request->latitude;
         $blackPoint->longitude = $request->longitude;
         $blackPoint->city_id = $request->city;
-        $blackPoint->user_id = 2;
+        $blackPoint->user_id = $request->user->id;
 
         $blackPoint->save();
 
