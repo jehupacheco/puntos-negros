@@ -34,7 +34,7 @@
         @endguest
         <nav class="deep-purple darken-1">
             <div class="nav-wrapper">
-                <a class="brand-logo" href="{{ url('/') }}" style="padding-left:1rem; width: 25%">
+                <a class="brand-logo" href="{{ url('/') }}" style="padding-left:1rem; width: 60%">
                     Puntos Negros
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -63,6 +63,11 @@
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     @else
                         
+                        <li>
+                          <a href="{{ url('/') }}">
+                            Home
+                          </a>
+                        </li>
                         <li>
                           <a href="{{ route('blackpoint.create') }}">
                             Agrega un punto
