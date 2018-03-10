@@ -62,7 +62,7 @@ class BlackPointController extends Controller
         $blackPoint->latitude = $request->latitude;
         $blackPoint->longitude = $request->longitude;
         $blackPoint->city_id = $request->city;
-        $blackPoint->user_id = $request->user->id;
+        $blackPoint->user_id = $request->user_id;
 
         $blackPoint->save();
 
