@@ -11,14 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
     @yield('extra-css')
-     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -73,6 +69,8 @@
     </div>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('extra-js')
 </body>
