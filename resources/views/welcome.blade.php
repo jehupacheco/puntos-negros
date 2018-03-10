@@ -18,7 +18,7 @@
           </div>
         </div>
         @auth
-          <ul>
+          <ul style="text-align: center">
             <li style="min-width: 250px;"><a href="{{ route('blackpoint.list') }}" class="waves-effect waves-light btn">Ver como lista</a></li>
           </ul>
           @endauth
