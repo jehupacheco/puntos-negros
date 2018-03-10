@@ -42,7 +42,7 @@
                     @if (request()->path() == '/')
                     <div class="input-field" style="width: 100%">
                         <i class="material-icons prefix white-text">search</i>
-                        <input class="white-text" type="text" placeholder="Busca un lugar" style="margin-bottom: 10px" id="nav-input-search">
+                        <input class="white-text" type="text" placeholder="Busca un lugar" style="margin-bottom: 10px; margin-top: 10px;" id="nav-input-search">
                     </div>
                     @endif
                     <li style="min-width: 250px;"><a href="{{ route('blackpoint.create') }}" class="waves-effect waves-light btn">Agrega un punto</a></li>
