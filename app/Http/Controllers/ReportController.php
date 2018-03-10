@@ -35,7 +35,7 @@ class ReportController extends Controller
                 ->leftJoin('cities', 'cities.id', '=', 'black_points.city_id')
                 ->groupBy(['month'])
                 ->get();
-dd($data);
+
         return view('reports.department', compact('data'));
     }
 
