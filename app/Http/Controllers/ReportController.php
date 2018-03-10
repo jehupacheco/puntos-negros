@@ -26,6 +26,17 @@ class ReportController extends Controller
         return view('reports.index', compact('data'));
     }
 
+    public function byDepartment(City $city)
+    {
+        $data =  DB::table('black_points')
+                ->select(DB::raw('count(*) as count, black_points.city_id, cities.name'))
+                ->leftJoin('cities', 'cities.id', '=', 'black_points.city_id')
+                ->groupBy(['city_id', 'cities.name'])
+                ->get();
+
+        return view('reports.department', compact('data'));
+    }
+
 }
 
 

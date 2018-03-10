@@ -27,7 +27,7 @@ Route::group(['prefix' => 'blackpoint'], function() {
 
 Route::group(['prefix' => 'reporte'], function() {
     Route::get('/', 'ReportController@index')->name('report');
-    Route::get('/departamento/{department}', ['as' => 'report.department', 'uses' => 'BlackPointController@byDepartment']);
+    Route::get('/departamento/{department}', ['as' => 'report.department', 'uses' => 'ReportController@byDepartment']);
 });
 
 
