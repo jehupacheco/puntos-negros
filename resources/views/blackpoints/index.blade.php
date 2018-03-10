@@ -12,21 +12,21 @@
         <table class="striped responsive">
           <thead>
             <tr>
-              <th>Detalle</th>
-              <th>Ciudad</th>
-              <th>Latitud / Longitud</th>
-              <th>Status</th>
-              <th>Acción</th>
+              <th width="40%">Detalle</th>
+              <th class="center-align" width="12%">Ciudad</th>
+              <th class="center-align" width="24%">Latitud / Longitud</th>
+              <th class="center-align" width="12%">Status</th>
+              <th class="center-align" width="12%">Acción</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($blackPoints as $blackPoint)
               <tr>
                 <td>{{$blackPoint->detail}}</td>
-                <td>{{$blackPoint->city->name}}</td>
-                <td>{{$blackPoint->latitude}} / {{$blackPoint->longitude}}</td>
-                <td>{{$blackPoint->status->name}}</td>
-                <td><a href="{{route('blackpoint.edit',['blackPoint' => $blackPoint])}}" class="btn btn-primary">Editar</a></td>
+                <td class="center-align">{{$blackPoint->city->name}}</td>
+                <td class="center-align">{{$blackPoint->latitude}} / {{$blackPoint->longitude}}</td>
+                <td class="center-align">{{$blackPoint->status->name}}</td>
+                <td class="center-align"><a href="{{route('blackpoint.edit',['blackPoint' => $blackPoint])}}" class="btn btn-primary">Editar</a></td>
               </tr>
             @endforeach
           </tbody>
