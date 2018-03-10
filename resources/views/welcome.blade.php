@@ -1,11 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div id="map" style="height: 500px; width: 100%"></div>
-    </div>
-</div>
+  <div class="row">
+      <div class="col s3" style="padding: 0px;">
+        <div class="card" style="margin: 0px;">
+          <div class="card-image">
+            <img src="img/addPhoto.png" alt="">
+          </div>
+          <div class="card-content">
+            <p>
+              Selecciona un punto en el mapa para mostrar detalles sobre el mismo.
+            </p>
+          </div>
+          <div class="card-action">
+            <a href="#">Do something</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s9" style="padding: 0px;">
+        <div id="map" style="height: 90vh; width: 100%"></div>
+      </div>
+  </div>
 @endsection
 
 @section('extra-js')
