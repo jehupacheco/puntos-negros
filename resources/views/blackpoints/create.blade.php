@@ -4,6 +4,29 @@
 @section('content')
 <div class="row">
   <div class="col s10 m8 offset-s1 offset-m2">
+    @if(session()->has('message'))
+      <div class="chip">
+        {{ session('message') }}
+        <i class="close material-icons">close</i>
+      </div>
+    @endif
+  </div>
+</div>
+<div class="row">
+    <div class="col s10 m8 offset-s1 offset-m2">
+        @if (count($errors) > 0)
+          @foreach ($errors->all() as $error)
+            <div class="chip">
+              {{ $error }}
+              <i class="close material-icons">close</i>
+            </div>
+            <br>
+          @endforeach
+        @endif
+    </div>
+</div>
+<div class="row">
+  <div class="col s10 m8 offset-s1 offset-m2">
     <div class="card" style="margin-top: 50px">
       <div class="card-content">
         <form method="POST" action="{{route('blackpoint.store')}}">
@@ -137,6 +160,7 @@
   function searchByCity() {
     text = city.options[city.selectedIndex].innerText;
     document.getElementById('latLngData').value = text;
+    document.getElementById('latLngData').focus();
   }
 
   </script>
