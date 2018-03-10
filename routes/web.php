@@ -16,6 +16,7 @@ Route::get('/', ['as' => 'blackpoint.index', 'uses' => 'BlackPointController@ind
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('api/login', 'Auth\LoginController@loginMobile')->name('api.login');
 
 Route::group(['prefix' => 'blackpoint'], function() {
     Route::post('/', ['as' => 'blackpoint.show', 'uses' => 'BlackPointController@show']);
