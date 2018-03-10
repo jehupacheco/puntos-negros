@@ -73,10 +73,6 @@
                         @endguest
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        @guest
-                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        @else
-    
                             <li>
                               <a href="{{ url('/') }}">
                                 Home
@@ -87,6 +83,10 @@
                                 Agrega un punto
                               </a>
                             </li>
+                        @guest
+                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        @else
+    
                             <li>
                               <a href="{{ route('report') }}">
                                 Reportes
