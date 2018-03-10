@@ -134,7 +134,7 @@
               }));
 
               var description = locations[key].map(function(location) {
-                return '<li>- ' + location.detail + '</li>';
+                return '<li><strong>-</strong> ' + location.detail + '</li>';
               }).join('');
 
               descriptions[key] = '<div style="margin-left:15px;"><ul>' + description + '</ul></div>';
