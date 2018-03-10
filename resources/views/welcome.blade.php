@@ -147,10 +147,10 @@
               }));
 
               var description = locations[key].map(function(location) {
-                return '<li>' + location.detail + '</li>';
+                return '<li><strong>-</strong> ' + location.detail + '</li>';
               }).join('');
 
-              descriptions[key] = '<div><ul>' + description + '</ul></div>';
+              descriptions[key] = '<div style="margin-left:15px;"><ul>' + description + '</ul></div>';
             });
 
             markers.forEach(marker => {
@@ -171,11 +171,11 @@
                     $('#content-image, #content-image-2').attr('src', 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location=' + res.latitude + ',' + res.longitude + '&key=AIzaSyCVZd8XiGUXj6RdybBK61VfTQL4dQ53X8U&fov=120');
                     $('#content-sidebar, #content-sidebar-2').empty();
                     $('#content-sidebar, #content-sidebar-2').append(`
-                        <p>Ciudad : ${res.city}</p>
-                        <p>Creado en : ${res.created_at}</p>
-                        <p>Creado por : ${res.user}</p>
-                        <p>Estado actual : ${res.status}</p>
-                        <p>Comentarios : ${descriptions[thisMarker.key]}</p>
+                        <p><strong>Ciudad</strong> : ${res.city}</p>
+                        <p><strong>Creado en</strong> : ${res.created_at}</p>
+                        <p><strong>Creado por</strong> : ${res.user}</p>
+                        <p><strong>Estado actual</strong> : ${res.status}</p>
+                        <p><strong>Comentarios</strong> : ${descriptions[thisMarker.key]}</p>
                     `);
 
                     if ($(window).width() < 992) {
